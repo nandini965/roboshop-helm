@@ -4,7 +4,7 @@ pipeline {
 
   parameters {
     string(name: 'component', defaultValue: '', description: 'App Component Name')
-    string(name: 'app_version', defaultValue: '', description: 'App Version')
+
   }
 
   stages {
