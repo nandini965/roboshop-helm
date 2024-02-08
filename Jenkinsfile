@@ -1,28 +1,37 @@
 pipeline {
- agent any
-parameters {
-string(name: 'component', default value: '', description: 'App component')
-}
- stages {
-  stage('clone APP Repo') {
-  steps {
-  dir ('APP') {
-  git branch : 'main', url: https://github.com/nandini965/${component}.git
-  }
-  }
+
+  agent any
+
+  parameters {
+    string(name: 'component', defaultValue: '', description: 'App Component Name')
+    string(name: 'app_version', defaultValue: '', description: 'App Version')
   }
 
-  stage('Helm dploy') {
-  steps {
-  sh 'helm upgrades -i ${component} -f ../APP /values.yaml'
-  }
-  }
-  }
-  }
-  post {
-      always {
-        cleanWs()
+  stages {
+
+    stage('Clone App Repo') {
+      steps {
+        dir('APP') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb72/${component}'
+        }
+
+      }
+
+    }
+
+    stage('Helm Deploy') {
+      steps {
+        dir('HELM') {
+          sh 'helm upgrade -i ${component} . -f ../APP/values.yaml --set app_version=${app_version}'
+        }
+
       }
     }
 
+  }
+
+  post {
+    always {
+      cleanWs()
+    }
   }
