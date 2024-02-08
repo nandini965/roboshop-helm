@@ -12,7 +12,7 @@ pipeline {
     stage('Clone App Repo') {
       steps {
         dir('APP') {
-          git branch: 'main', url: 'https://github.com/raghudevopsb72/${component}'
+          git branch: 'main', url: 'https://github.com/nandini965/${component}'
         }
 
       }
