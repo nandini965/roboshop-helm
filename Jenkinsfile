@@ -22,7 +22,6 @@ pipeline {
     stage('Helm Deploy') {
       steps {
         dir('HELM') {
-         sh 'aws eks update-kubeconfig --name prod-eks-cluster'
          sh 'helm upgrade -i ${component} . -f /APP/values.yaml'
         }
 
