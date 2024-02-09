@@ -22,7 +22,7 @@ pipeline {
     stage('Helm Deploy') {
       steps {
         dir('HELM') {
-         sh 'helm upgrade -i ${component} . -f values.yaml'
+         sh 'helm upgrade -i ${component} . -f ./APP/values.yaml'
         }
 
       }
