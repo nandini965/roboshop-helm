@@ -4,7 +4,7 @@ pipeline {
 
   parameters {
     string(name: 'component', defaultValue: '', description: 'App Component Name')
-
+    string(name: 'app_version', defaultValue: '', description: 'App Version')
   }
 
   stages {
@@ -14,7 +14,9 @@ pipeline {
         dir('APP') {
           git branch: 'main', url: 'https://github.com/nandini965/${component}'
         }
-
+        dir('HELM') {
+          git branch: 'main', url: 'https://github.com/nandini965/roboshop-helm'
+        }
       }
 
     }
@@ -22,8 +24,8 @@ pipeline {
     stage('Helm Deploy') {
       steps {
         dir('HELM') {
-         sh 'helm upgrade -i ${component} . -f ../APP/values.yaml'
-
+          sh 'aws eks update-kubeconfig --name prod-eks-cluster'
+          sh 'helm upgrade -i ${component} . -f ../APP/values.yaml --set app_version=${app_version}'
         }
 
       }
@@ -36,4 +38,5 @@ pipeline {
       cleanWs()
     }
   }
+
 }
