@@ -37,7 +37,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: PARAMS
-              value: { { .Values.params } }
+              value: {{ .Values.params }}
           volumeMounts:
             - mountPath: /params
               name: params-volume
