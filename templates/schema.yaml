@@ -18,8 +18,6 @@ spec:
           env:
             - name: COMPONENT
               value: {{ .Values.appName }}
-            - name: SCHEMA_TYPE
-              value: {{ .Values.schema.type }}
       restartPolicy: Never
   backoffLimit: 4
-{{- end }}
+   {{- end }}
