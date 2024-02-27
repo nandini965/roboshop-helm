@@ -22,4 +22,4 @@ spec:
               value: {{ .Values.schema.type }}
       restartPolicy: Never
   backoffLimit: 4
-   {{- end }}
+{{- end }}
