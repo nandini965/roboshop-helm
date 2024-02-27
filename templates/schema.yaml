@@ -13,7 +13,7 @@ spec:
       serviceAccountName: {{ .Values.appName }}
       containers:
         - name: schema-loader
-          image: 633788536644.dkr.ecr.us-east-1.amazonaws.com/schema-loader:latest
+          image: 115099330984.dkr.ecr.us-east-1.amazonaws.com/schema-loader:latest
           imagePullPolicy: Always
           env:
             - name: COMPONENT
