@@ -8,7 +8,7 @@ pipeline {
   }
 
   stages {
-
+ 
     stage('Clone App Repo') {
       steps {
         dir('APP') {
